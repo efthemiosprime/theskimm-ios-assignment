@@ -12,6 +12,7 @@ class PriceListViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var priceLabel: UILabel!
   
+  var pollingTimer: Timer?
   var historicalCloseData: [String: Double]?
   var historicalCloseDataKeys: [String]?
 
@@ -20,7 +21,7 @@ class PriceListViewController: UIViewController {
     setupTableView()
     refreshCurrentPrice()
     refreshHistoricalCloseData()
-  
+    startPollingTimer()
   }
     
   //MARK:-
@@ -50,14 +51,15 @@ class PriceListViewController: UIViewController {
 
   }
   
+  //MARK:- Refresh view
   @objc func refreshCurrentPrice() {
     getCurrentPrice { price in
       guard price != nil else { return }
       guard let rate = price?.bpi["USD"]?.rate,
             let symbol = price?.bpi["USD"]?.symbol.htmlDecoded else { return }
       
-      DispatchQueue.main.async {
-        self.priceLabel?.text = "\(symbol)\(Double(truncating: (rate.currencyFormatter())).round(to: 2))"
+      DispatchQueue.main.async { [weak self] in
+        self?.priceLabel?.text = "\(symbol)\(Double(truncating: (rate.currencyFormatter())).round(to: 2))"
       }
     }
   }
@@ -65,15 +67,22 @@ class PriceListViewController: UIViewController {
   func refreshHistoricalCloseData() {
     getHistoricalCloseData { data in
       guard data != nil else { return }
-      DispatchQueue.main.async {
-        self.historicalCloseData = data?.bpi
-        if let keys = self.historicalCloseData?.keys {
-          self.historicalCloseDataKeys = Array(keys).sorted{$0 > $1}
-          self.tableView.reloadData()
+      DispatchQueue.main.async { [weak self] in
+        self?.historicalCloseData = data?.bpi
+        if let keys = self?.historicalCloseData?.keys {
+          self?.historicalCloseDataKeys = Array(keys).sorted{$0 > $1}
+          self?.tableView.reloadData()
         }
       }
     }
   }
+  
+  func startPollingTimer() {
+    pollingTimer?.invalidate()
+    pollingTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(refreshCurrentPrice), userInfo: nil, repeats: true)
+
+  }
+  
 }
 
 //MARK:- Helpers

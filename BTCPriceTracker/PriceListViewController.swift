@@ -41,7 +41,7 @@ class PriceListViewController: UIViewController {
   
   func getHistoricalCloseData(_ completion: @escaping (HistoricalClose?) -> ()) {
     
-    let startDate = getDateFrom(14).format("yyyy-MM-dd")
+    let startDate = getDateFrom(daysAgo: Config.TwoWeeksAgo).format("yyyy-MM-dd")
     let endDate = Date().format("yyyy-MM-dd")
 
     let request = CoinDeskRequest.historicalClose(currency: "USD", start: startDate, end: endDate)
@@ -79,7 +79,7 @@ class PriceListViewController: UIViewController {
   
   func startPollingTimer() {
     pollingTimer?.invalidate()
-    pollingTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(refreshCurrentPrice), userInfo: nil, repeats: true)
+    pollingTimer = Timer.scheduledTimer(timeInterval: Config.RefreshRate, target: self, selector: #selector(refreshCurrentPrice), userInfo: nil, repeats: true)
 
   }
   
@@ -87,7 +87,7 @@ class PriceListViewController: UIViewController {
 
 //MARK:- Helpers
 extension PriceListViewController {
-  func getDateFrom(_ daysAgo: Int) -> Date {
+  func getDateFrom(daysAgo: Int) -> Date {
     
     var dateComponents = DateComponents()
     dateComponents.day = -daysAgo

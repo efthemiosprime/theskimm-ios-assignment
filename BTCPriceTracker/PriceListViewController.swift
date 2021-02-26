@@ -15,12 +15,35 @@ class PriceListViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupTableView()
+    
+    refreshCurrentPrice()
   }
     
   private func setupTableView() {
     tableView.delegate = self
     tableView.dataSource = self
   }
+  
+  func getCurrentPrice(_ completion: @escaping (CurrentPrice?) -> ()) {
+
+    CoinDeskService.get(CoinDeskRequest.currentPrice, type: CurrentPrice.self) { (data, error) in
+      guard error == nil else { return }
+      completion(data ?? nil)
+    }
+  }
+  
+  @objc func refreshCurrentPrice() {
+    getCurrentPrice { price in
+      guard price != nil else { return }
+      guard let rate = price?.bpi["USD"]?.rate,
+            let symbol = price?.bpi["USD"]?.symbol.htmlDecoded else { return }
+      
+      DispatchQueue.main.async {
+        self.priceLabel?.text = "\(symbol)\(Double(truncating: (rate.currencyFormatter())).round(to: 2))"
+      }
+    }
+  }
+  
   
 }
 

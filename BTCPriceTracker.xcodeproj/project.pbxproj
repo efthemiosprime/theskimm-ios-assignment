@@ -17,6 +17,7 @@
 		5828B86A25E95083002682D9 /* BTCPriceTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B86925E95083002682D9 /* BTCPriceTrackerUITests.swift */; };
 		5828B88025E95D5E002682D9 /* PriceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B87F25E95D5E002682D9 /* PriceListViewController.swift */; };
 		5828B89025E96252002682D9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B88F25E96252002682D9 /* DetailViewController.swift */; };
+		5828B89525E96900002682D9 /* CoinDeskAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B89425E96900002682D9 /* CoinDeskAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		5828B86B25E95083002682D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5828B87F25E95D5E002682D9 /* PriceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceListViewController.swift; sourceTree = "<group>"; };
 		5828B88F25E96252002682D9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		5828B89425E96900002682D9 /* CoinDeskAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDeskAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				5828B84D25E95081002682D9 /* BTCPriceTracker.xcdatamodeld */,
 				5828B87F25E95D5E002682D9 /* PriceListViewController.swift */,
 				5828B88F25E96252002682D9 /* DetailViewController.swift */,
+				5828B89425E96900002682D9 /* CoinDeskAPI.swift */,
 			);
 			path = BTCPriceTracker;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5828B89525E96900002682D9 /* CoinDeskAPI.swift in Sources */,
 				5828B88025E95D5E002682D9 /* PriceListViewController.swift in Sources */,
 				5828B84F25E95081002682D9 /* BTCPriceTracker.xcdatamodeld in Sources */,
 				5828B89025E96252002682D9 /* DetailViewController.swift in Sources */,

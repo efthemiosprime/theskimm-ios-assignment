@@ -24,13 +24,15 @@ class PriceListViewController: UIViewController {
     startPollingTimer()
   }
     
-  //MARK:-
+  //MARK:- Setup
   private func setupTableView() {
     tableView.delegate = self
     tableView.dataSource = self
     tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
   }
   
+  
+  //MARK:- Coindesk
   func getCurrentPrice(_ completion: @escaping (CurrentPrice?) -> ()) {
 
     CoinDeskService.get(CoinDeskRequest.currentPrice, type: CurrentPrice.self) { (data, error) in
@@ -95,6 +97,7 @@ extension PriceListViewController {
   }
   
 }
+
 //MARK:- UITableViewDelegate & UITableViewDataSource
 extension PriceListViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -115,6 +118,7 @@ extension PriceListViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
     let detailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+    detailViewController.selectedDay = self.historicalCloseDataKeys![indexPath.row]
     self.navigationController?.pushViewController(detailViewController, animated: true)
 
   }

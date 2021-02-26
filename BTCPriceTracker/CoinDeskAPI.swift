@@ -12,7 +12,6 @@ enum CoinDeskRequest {
   case historicalClose(currency: String? = "USD", start: String?, end: String?)
 }
 
-
 extension CoinDeskRequest {
   var url: URL {
     switch self {

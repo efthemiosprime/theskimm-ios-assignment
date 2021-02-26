@@ -19,6 +19,7 @@
 		5828B89025E96252002682D9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B88F25E96252002682D9 /* DetailViewController.swift */; };
 		5828B89525E96900002682D9 /* CoinDeskAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B89425E96900002682D9 /* CoinDeskAPI.swift */; };
 		5828B89E25E97EA6002682D9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B89D25E97EA6002682D9 /* Extensions.swift */; };
+		5828B8A325E97F80002682D9 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B8A225E97F80002682D9 /* Models.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		5828B88F25E96252002682D9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		5828B89425E96900002682D9 /* CoinDeskAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDeskAPI.swift; sourceTree = "<group>"; };
 		5828B89D25E97EA6002682D9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		5828B8A225E97F80002682D9 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				5828B88F25E96252002682D9 /* DetailViewController.swift */,
 				5828B89425E96900002682D9 /* CoinDeskAPI.swift */,
 				5828B89D25E97EA6002682D9 /* Extensions.swift */,
+				5828B8A225E97F80002682D9 /* Models.swift */,
 			);
 			path = BTCPriceTracker;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				5828B89525E96900002682D9 /* CoinDeskAPI.swift in Sources */,
 				5828B88025E95D5E002682D9 /* PriceListViewController.swift in Sources */,
 				5828B84F25E95081002682D9 /* BTCPriceTracker.xcdatamodeld in Sources */,
+				5828B8A325E97F80002682D9 /* Models.swift in Sources */,
 				5828B89025E96252002682D9 /* DetailViewController.swift in Sources */,
 				5828B84525E95081002682D9 /* AppDelegate.swift in Sources */,
 				5828B84725E95081002682D9 /* SceneDelegate.swift in Sources */,

@@ -12,16 +12,22 @@ class PriceListViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var priceLabel: UILabel!
   
+  var historicalCloseData: [String: Double]?
+  var historicalCloseDataKeys: [String]?
+
   override func viewDidLoad() {
     super.viewDidLoad()
     setupTableView()
-    
     refreshCurrentPrice()
+    refreshHistoricalCloseData()
+  
   }
     
+  //MARK:-
   private func setupTableView() {
     tableView.delegate = self
     tableView.dataSource = self
+    tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
   }
   
   func getCurrentPrice(_ completion: @escaping (CurrentPrice?) -> ()) {
@@ -30,6 +36,18 @@ class PriceListViewController: UIViewController {
       guard error == nil else { return }
       completion(data ?? nil)
     }
+  }
+  
+  func getHistoricalCloseData(_ completion: @escaping (HistoricalClose?) -> ()) {
+    
+    let startDate = getDateFrom(14).format("yyyy-MM-dd")
+    let endDate = Date().format("yyyy-MM-dd")
+
+    let request = CoinDeskRequest.historicalClose(currency: "USD", start: startDate, end: endDate)
+    CoinDeskService.get(request, type: HistoricalClose.self) { (data, error) in
+      completion(data)
+    }
+
   }
   
   @objc func refreshCurrentPrice() {
@@ -44,17 +62,42 @@ class PriceListViewController: UIViewController {
     }
   }
   
-  
+  func refreshHistoricalCloseData() {
+    getHistoricalCloseData { data in
+      guard data != nil else { return }
+      DispatchQueue.main.async {
+        self.historicalCloseData = data?.bpi
+        if let keys = self.historicalCloseData?.keys {
+          self.historicalCloseDataKeys = Array(keys).sorted{$0 > $1}
+          self.tableView.reloadData()
+        }
+      }
+    }
+  }
 }
 
+//MARK:- Helpers
+extension PriceListViewController {
+  func getDateFrom(_ daysAgo: Int) -> Date {
+    
+    var dateComponents = DateComponents()
+    dateComponents.day = -daysAgo
+    return (Calendar.current as NSCalendar).date(byAdding: .day, value: -daysAgo, to: Date(), options: NSCalendar.Options(rawValue: 0))!
+  }
+  
+}
 //MARK:- UITableViewDelegate & UITableViewDataSource
 extension PriceListViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 0
+    return self.historicalCloseData?.count ?? 0
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = UITableViewCell()
+    
+    let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as UITableViewCell
+
+    let currentKey = historicalCloseDataKeys![indexPath.row]
+    cell.textLabel?.text = "\(currentKey): $\(String(describing: historicalCloseData![currentKey]!.round(to: 2)) )"
 
     return cell
   }

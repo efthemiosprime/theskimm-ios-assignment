@@ -1,24 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tZN-tp-RNY">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Price List View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="PriceListViewController" customModule="BTCPriceTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qh-gX-CwF">
+                                <rect key="frame" x="0.0" y="88" width="414" height="58"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bitcoin price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4g-bS-d0P">
+                                <rect key="frame" x="0.0" y="154" width="414" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zOR-Xy-gOb">
+                                <rect key="frame" x="0.0" y="187" width="414" height="675"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="8qh-gX-CwF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="8KT-zp-EKQ"/>
+                            <constraint firstItem="zOR-Xy-gOb" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="AdT-m4-wtk"/>
+                            <constraint firstItem="b4g-bS-d0P" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="KOm-E6-gEs"/>
+                            <constraint firstItem="b4g-bS-d0P" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="L8Z-Ug-ZjY"/>
+                            <constraint firstItem="zOR-Xy-gOb" firstAttribute="top" secondItem="b4g-bS-d0P" secondAttribute="bottom" constant="16" id="Oom-rq-GIA"/>
+                            <constraint firstItem="zOR-Xy-gOb" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="TUK-XA-Jlk"/>
+                            <constraint firstItem="b4g-bS-d0P" firstAttribute="top" secondItem="8qh-gX-CwF" secondAttribute="bottom" constant="8" symbolic="YES" id="fJN-0z-wre"/>
+                            <constraint firstItem="zOR-Xy-gOb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gS4-mV-p5a"/>
+                            <constraint firstItem="8qh-gX-CwF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="kdU-dL-4VP"/>
+                            <constraint firstItem="8qh-gX-CwF" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="oM8-Hn-Esg"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="kqP-2o-qwE"/>
+                    <connections>
+                        <outlet property="priceLabel" destination="8qh-gX-CwF" id="Yj5-g8-3wO"/>
+                        <outlet property="tableView" destination="zOR-Xy-gOb" id="ScF-lt-g1i"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-429" y="342"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="nBc-Py-3K7">
+            <objects>
+                <tableViewController storyboardIdentifier="DetailViewController" id="ggO-z5-4Hp" customClass="DetailViewController" customModule="BTCPriceTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fKA-hN-7xw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="iC5-SP-yBZ">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iC5-SP-yBZ" id="4k4-SB-ehD">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ggO-z5-4Hp" id="uo1-Hz-T15"/>
+                            <outlet property="delegate" destination="ggO-z5-4Hp" id="Lrm-iL-GRm"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S9h-Mn-qqM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="380" y="342"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="YNm-04-gL7">
+            <objects>
+                <navigationController id="tZN-tp-RNY" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TVr-bl-aI6">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="eZ9-wR-nHc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a2U-En-ncZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1352" y="342"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

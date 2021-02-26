@@ -7,8 +7,6 @@
 
 import Foundation
 
-import Foundation
-
 struct CurrentPrice: Decodable {
   let time: Time
   let chartName: String

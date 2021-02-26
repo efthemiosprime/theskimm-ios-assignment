@@ -46,18 +46,17 @@ struct CoinDeskService {
     let decoder = JSONDecoder()
     decoder.dateDecodingStrategy = .iso8601
     let task = URLSession.shared.dataTask(with: request.url) { result in
-        switch result {
-        case .success(let data):
-          do {
-            let data = try decoder.decode(T.self, from: data)
-            completionHandler?(data, nil)
-          } catch let error {
-            print(error.localizedDescription)
-          }
-
-        case .failure(let error):
-          completionHandler?(nil, error)
+      switch result {
+      case .success(let data):
+        do {
+          let data = try decoder.decode(T.self, from: data)
+          completionHandler?(data, nil)
+        } catch let error {
+          print(error.localizedDescription)
         }
+      case .failure(let error):
+        completionHandler?(nil, error)
+      }
     }
     
     task.resume()

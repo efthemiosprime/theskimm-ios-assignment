@@ -21,7 +21,7 @@ class PriceListViewController: UIViewController {
     tableView.delegate = self
     tableView.dataSource = self
   }
-
+  
 }
 
 //MARK:- UITableViewDelegate & UITableViewDataSource

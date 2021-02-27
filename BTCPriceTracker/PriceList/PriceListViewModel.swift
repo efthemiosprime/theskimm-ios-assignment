@@ -14,6 +14,7 @@ class PriceListViewModel {
       self.didUpateHistoricalValue?(historicalCloseValue?.bpi)
     }
   }
+  
   var currentValue: String? = nil {
     didSet {
       self.didUpdateCurrentValue?()
@@ -34,6 +35,7 @@ class PriceListViewModel {
     }
   }
   
+  
   func getHistoricalCloseData(_ completion: @escaping (HistoricalClose?) -> ()) {
     
     let startDate = Date().from(Config.TwoWeeksAgo).toString(Config.HistoricalCloseDateFormat)
@@ -45,8 +47,8 @@ class PriceListViewModel {
     CoinDeskService.get(request, type: HistoricalClose.self) { (data, error) in
       completion(data)
     }
-
   }
+  
   
   func updateHistoricalCloseValue() {
     getHistoricalCloseData { [weak self] data in
@@ -55,6 +57,7 @@ class PriceListViewModel {
     }
   }
   
+  
   @objc func updateCurrentValue() {
     getCurrentPrice { [weak self] price in
       guard let rate = price?.bpi[Config.Currency.USD.rawValue]?.rate else { return }
@@ -62,12 +65,16 @@ class PriceListViewModel {
     }
   }
   
+  
   func startPolling(every: TimeInterval? = 10) {
     pollingTimer?.invalidate()
     pollingTimer = Timer.scheduledTimer(timeInterval: every ?? 10, target: self, selector: #selector(updateCurrentValue), userInfo: nil, repeats: true)
   }
   
+  
   func stopPolling() {
     pollingTimer?.invalidate()
   }
+  
+  
 }

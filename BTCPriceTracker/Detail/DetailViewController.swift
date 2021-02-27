@@ -19,21 +19,21 @@ class DetailViewController: UITableViewController {
         self?.refresh()
       }
     }
-    
   }
+  
   
   // MARK: - Refresh tableview
   func refresh() {
     tableView.reloadData()
   }
 
+  
   // MARK: - Table view data source
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    // #warning Incomplete implementation, return the number of rows
     return detailViewModel.btcPrices.count
   }
 
-  
+
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath)
     cell.textLabel?.text = "\(self.detailViewModel.btcPrices[indexPath.row])"

@@ -16,6 +16,7 @@ class PriceListViewController: UIViewController {
   var historicalCloseDataKeys: [String] = []
   var priceListViewModel: PriceListViewModel = PriceListViewModel()
 
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupTableView()
@@ -24,6 +25,7 @@ class PriceListViewController: UIViewController {
     
   }
     
+  
   //MARK:- Setup
   private func setupTableView() {
     tableView.delegate = self
@@ -44,6 +46,7 @@ class PriceListViewController: UIViewController {
     }
 
   }
+  
   
   func refreshHistoricalCloseData() {
     
@@ -66,9 +69,12 @@ class PriceListViewController: UIViewController {
 
 //MARK:- UITableViewDelegate & UITableViewDataSource
 extension PriceListViewController: UITableViewDelegate, UITableViewDataSource {
+  
+  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return self.historicalCloseData.count
   }
+  
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
@@ -93,4 +99,6 @@ extension PriceListViewController: UITableViewDelegate, UITableViewDataSource {
     self.navigationController?.pushViewController(detailViewController, animated: true)
 
   }
+  
+  
 }

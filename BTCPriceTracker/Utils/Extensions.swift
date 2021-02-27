@@ -27,6 +27,14 @@ extension Date {
       return formatter.string(from: self)
   }
   
+  func fromString(_ date: String) -> Date {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyyMMdd'T'HHmmssZ"
+    dateFormatter.timeZone = TimeZone.current
+      dateFormatter.locale = Locale.current
+    return dateFormatter.date(from: date) ?? Date()
+  }
+  
   func from(_ daysAgo: Int) -> Date {
     
     var dateComponents = DateComponents()

@@ -20,6 +20,7 @@ class DetaillViewModel {
   var didUpdate: (()->())? = nil
 
   func get() {
+
     currencies.enumerated().forEach({(index, item) in
       let service = CoinDeskService()
       service.get(CoinDeskRequest.historicalClose(currency: item.rawValue, start: day, end: day), type: HistoricalClose.self) { [weak self] (data, error) in
@@ -33,7 +34,6 @@ class DetaillViewModel {
             }
           }
         }
-
       }
     })
   }
@@ -41,7 +41,6 @@ class DetaillViewModel {
   func getFormattedPrice(data: HistoricalClose?, code: String) -> String {
     guard let price = data?.bpi.map({ $0.value}).first else { return "" }
     let formattedPrice = price.currencyFormatter(code: code)
-    
     return formattedPrice
   }
 }

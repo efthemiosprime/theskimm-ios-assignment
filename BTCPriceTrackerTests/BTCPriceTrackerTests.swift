@@ -12,9 +12,9 @@ class BTCPriceTrackerTests: XCTestCase {
 
   func testCurrentPrice() {
     let expectation: XCTestExpectation = self.expectation(description: "Current Price Expectation")
-
-    CoinDeskService.get(CoinDeskRequest.currentPrice, type: CurrentPrice.self) { price, error in
-      XCTAssertNil(error, "Error \(String(describing: error?.localizedDescription))")
+    let service = CoinDeskService()
+    service.get(CoinDeskRequest.currentPrice, type: CurrentPrice.self) { price, error in
+      XCTAssertNil(error, "Invalid Request")
       XCTAssertNotNil(price, "Current price is empty")
       expectation.fulfill()
     }
@@ -25,8 +25,8 @@ class BTCPriceTrackerTests: XCTestCase {
   
   func testHistoricalCloseData() {
     let expectation: XCTestExpectation = self.expectation(description: "HistoricalClose Data Expectation")
-
-    CoinDeskService.get(CoinDeskRequest.historicalClose(currency: "USD", start: "2021-02-11", end: "2021-02-25"), type: HistoricalClose.self) { (data, error) in
+    let service = CoinDeskService()
+    service.get(CoinDeskRequest.historicalClose(currency: "USD", start: "2021-02-11", end: "2021-02-25"), type: HistoricalClose.self) { (data, error) in
       XCTAssertNil(error, "Invalid Request")
       XCTAssertNotNil(data, "HistoricalClose data is empty")
       expectation.fulfill()
@@ -38,8 +38,14 @@ class BTCPriceTrackerTests: XCTestCase {
   
   func testDetailViewModelGetFormattedPrice() {
     let detalViewModel = DetaillViewModel()
-    XCTAssertEqual(detalViewModel.getFormattedPrice(data: nil, code: ""), "", "is empty")
-    XCTAssertEqual(detalViewModel.getFormattedPrice(data: nil, code: ""), "", "is empty")
+    let mockData = HistoricalClose(bpi: ["2021-02-25": 38664.454], time: BTCPriceTracker.Time(updated: "Feb 26, 2021 00:03:00 UTC", updatedISO: Date().fromString("2021-02-26 00:03:00 +0000"), updateduk: nil))
+    
+    XCTAssertEqual(detalViewModel.getFormattedPrice(data: mockData, code: Config.Currency.USD.rawValue), "$38,664.45", "It's not USD")
+    XCTAssertEqual(detalViewModel.getFormattedPrice(data: mockData, code: Config.Currency.EUR.rawValue), "€38,664.45", "It's not EUR")
+    XCTAssertEqual(detalViewModel.getFormattedPrice(data: mockData, code: Config.Currency.GBP.rawValue), "£38,664.45", "It's not GBP")
+    XCTAssertNotEqual(detalViewModel.getFormattedPrice(data: mockData, code: Config.Currency.GBP.rawValue), "", "Price is empty")
+    //
+    XCTAssertNotEqual(detalViewModel.getFormattedPrice(data: nil, code: ""), "", "Price is empty")
 
   }
 

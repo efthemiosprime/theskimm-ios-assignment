@@ -46,7 +46,6 @@
 		5828B84425E95081002682D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5828B84625E95081002682D9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		5828B84B25E95081002682D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		5828B84E25E95081002682D9 /* BTCPriceTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BTCPriceTracker.xcdatamodel; sourceTree = "<group>"; };
 		5828B85025E95083002682D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5828B85325E95083002682D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5828B85525E95083002682D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -64,7 +63,6 @@
 		5828B8AA25E99CAE002682D9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		5828B8C425E9B760002682D9 /* PriceListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceListViewModel.swift; sourceTree = "<group>"; };
 		5828B8CC25E9B76D002682D9 /* DetaillViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaillViewModel.swift; sourceTree = "<group>"; };
-		5828B8E425E9D1D5002682D9 /* LastPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastPrice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,9 +192,7 @@
 		5828B8B925E9B725002682D9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				5828B84D25E95081002682D9 /* BTCPriceTracker.xcdatamodeld */,
 				5828B8A225E97F80002682D9 /* Models.swift */,
-				5828B8E425E9D1D5002682D9 /* LastPrice.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -673,19 +669,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		5828B84D25E95081002682D9 /* BTCPriceTracker.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				5828B84E25E95081002682D9 /* BTCPriceTracker.xcdatamodel */,
-			);
-			currentVersion = 5828B84E25E95081002682D9 /* BTCPriceTracker.xcdatamodel */;
-			path = BTCPriceTracker.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 5828B83925E95081002682D9 /* Project object */;
 }

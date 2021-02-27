@@ -21,19 +21,27 @@ class DetaillViewModel {
 
   func get() {
     currencies.enumerated().forEach({(index, item) in
-      CoinDeskService.get(CoinDeskRequest.historicalClose(currency: item.rawValue, start: day, end: day), type: HistoricalClose.self) { [weak self] (data, error) in
+      let service = CoinDeskService()
+      service.get(CoinDeskRequest.historicalClose(currency: item.rawValue, start: day, end: day), type: HistoricalClose.self) { [weak self] (data, error) in
         guard error == nil else { return }
   
-        if let price = data?.bpi.map({ $0.value}).first {
-          self?.btcPrices.append("\(price.currencyFormatter(code: item.rawValue))")
-          
+        if let price = self?.getFormattedPrice(data: data, code: item.rawValue) {
+          self?.btcPrices.append(price)
           if let currenciesCount = self?.currencies.count, let btcPricesCount = self?.btcPrices.count {
             if currenciesCount == btcPricesCount {
               self?.didUpdate?()
             }
           }
         }
+
       }
     })
+  }
+  
+  func getFormattedPrice(data: HistoricalClose?, code: String) -> String {
+    guard let price = data?.bpi.map({ $0.value}).first else { return "" }
+    let formattedPrice = price.currencyFormatter(code: code)
+    
+    return formattedPrice
   }
 }

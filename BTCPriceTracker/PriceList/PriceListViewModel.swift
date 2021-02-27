@@ -28,8 +28,9 @@ class PriceListViewModel {
   
   //MARK:- Coindesk
   func getCurrentPrice(_ completion: @escaping (CurrentPrice?) -> ()) {
-
-    CoinDeskService.get(CoinDeskRequest.currentPrice, type: CurrentPrice.self) { (data, error) in
+    
+    let service = CoinDeskService()
+    service.get(CoinDeskRequest.currentPrice, type: CurrentPrice.self) { (data, error) in
       guard error == nil else { return }
       completion(data)
     }
@@ -44,7 +45,8 @@ class PriceListViewModel {
     guard startDate <= endDate else { return }
 
     let request = CoinDeskRequest.historicalClose(currency: Config.Currency.EUR.rawValue, start: startDate, end: endDate)
-    CoinDeskService.get(request, type: HistoricalClose.self) { (data, error) in
+    let service = CoinDeskService()
+    service.get(request, type: HistoricalClose.self) { (data, error) in
       completion(data)
     }
   }

@@ -39,9 +39,15 @@ extension CoinDeskRequest {
 }
 
 
+enum CoinDeskRequestError: String, Error {
+  case parameterNil = "Parameter were nil"
+  case encoddingFailed = "Encoding failed"
+  case missingURL = "MIssing URL"
+}
+
 struct CoinDeskService {
 
-  static func get<T: Decodable>(_ request: CoinDeskRequest, type: T.Type, completionHandler: ((T?, Error?) -> Void)?) {
+  func get<T: Decodable>(_ request: CoinDeskRequest, type: T.Type, completionHandler: ((T?, Error?) -> Void)?) {
     let decoder = JSONDecoder()
     decoder.dateDecodingStrategy = .iso8601
     let task = URLSession.shared.dataTask(with: request.url) { result in

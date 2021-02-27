@@ -2,7 +2,7 @@
 An example iPhone app that displays current and historical (2 weeks) exchange rates in EUR using Bitcoin Price Index API. 
 The app was built using MVVM architecture. 
 ## Notes
-I used Model View to consume endpoints with `CoinDeskService` and notify View Controller using a closure. In `PriceListViewModel` there are `didUpateHistoricalValue` and `didUpdateCurrentValue`, `PriceListViewController` listen for these two closures to be triggered and update the UI. `PriceListViewModel` is also responsible for polling current BTC value every 60 seconds. This flow is also adapted in `DetailViewModel`.
+I used Model View to consume endpoints with `CoinDeskService` and to notify View Controller using closures. In `PriceListViewModel`, the two closures are: `didUpateHistoricalValue` and `didUpdateCurrentValue`. `PriceListViewController` listens for these two closures to be triggered and then updates the UI. `PriceListViewModel` is also responsible for polling current BTC value every 60 seconds. This flow is also adapted in `DetailViewModel`.
 
 * Services/CoinDeskAPI.swift
     * Request enumeration maps encodes and build URLS, convenient service for consuming endpoints

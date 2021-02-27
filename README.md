@@ -10,6 +10,6 @@ Bitcoin Rate Tracker an iPhone app which displays current and historical Bitcoin
 - iOS 14.0+ 
 - Swift 5.0+
 
-## Getting Started 
-1. [Download](https://developer.apple.com/xcode/download/) the Version 12.4+ release.
-1. Clone this repository.
+## To BUILD and RUN:
+1. [XCode](https://developer.apple.com/xcode/download/) 12.4+ release.
+2. Clone this repository.

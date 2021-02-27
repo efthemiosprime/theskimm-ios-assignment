@@ -30,7 +30,7 @@ class PriceListViewModel {
 
     CoinDeskService.get(CoinDeskRequest.currentPrice, type: CurrentPrice.self) { (data, error) in
       guard error == nil else { return }
-      completion(data ?? nil)
+      completion(data)
     }
   }
   
@@ -57,10 +57,8 @@ class PriceListViewModel {
   
   @objc func updateCurrentValue() {
     getCurrentPrice { [weak self] price in
-      guard price != nil else { return }
-      guard let rate = price?.bpi["USD"]?.rate,
-            let symbol = price?.bpi["USD"]?.symbol.htmlDecoded else { return }
-      self?.currentValue = "\(symbol)\(Double(truncating: (rate.currencyFormatter())).round(to: 2))"
+      guard let rate = price?.bpi[Config.Currency.USD.rawValue]?.rate else { return }
+      self?.currentValue = "\(Double(truncating: (rate.currencyFormatter())).currencyFormatter(code: Config.Currency.USD.rawValue))"
     }
   }
   

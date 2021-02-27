@@ -12,6 +12,14 @@ extension Double {
     let divisor = pow(10.0, Double(places))
     return (self * divisor).rounded() / divisor
   }
+  
+  func currencyFormatter(code: String) -> String {
+    let formatter = NumberFormatter()
+    formatter.usesGroupingSeparator = true
+    formatter.currencyCode = code
+    formatter.numberStyle = .currency
+    return formatter.string(from: self as NSNumber)!
+  }
 }
 
 extension Date {
@@ -41,7 +49,6 @@ extension String {
     return formatter.number(from: self) ?? 0
   }
   
-  // https://stackoverflow.com/questions/40113805/decode-html-string
   var htmlDecoded: String {
       let decoded = try? NSAttributedString(
           data: Data(utf8),

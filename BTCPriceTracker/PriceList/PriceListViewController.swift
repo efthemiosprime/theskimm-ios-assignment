@@ -12,8 +12,8 @@ class PriceListViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var priceLabel: UILabel!
   
-  var historicalCloseData: [String: Double]?
-  var historicalCloseDataKeys: [String]?
+  var historicalCloseData: [String: Double] = [:]
+  var historicalCloseDataKeys: [String] = []
   var priceListViewModel: PriceListViewModel = PriceListViewModel()
 
   override func viewDidLoad() {
@@ -21,6 +21,7 @@ class PriceListViewController: UIViewController {
     setupTableView()
     refreshCurrentPrice()
     refreshHistoricalCloseData()
+    
   }
     
   //MARK:- Setup
@@ -49,11 +50,15 @@ class PriceListViewController: UIViewController {
     priceListViewModel.updateHistoricalCloseValue()
     priceListViewModel.didUpateHistoricalValue = {  [weak self] data in
       DispatchQueue.main.async {
-        self?.historicalCloseData = data
-        if let keys = self?.historicalCloseData?.keys {
-          self?.historicalCloseDataKeys = Array(keys).sorted{$0 > $1}
-          self?.tableView.reloadData()
+        if let data = data {
+          self?.historicalCloseData = data
+          
+          if let keys = self?.historicalCloseData.keys, keys.count > 0 {
+            self?.historicalCloseDataKeys = Array(keys).sorted{$0 > $1}
+            self?.tableView.reloadData()
+          }
         }
+
       }
     }
   }
@@ -62,16 +67,21 @@ class PriceListViewController: UIViewController {
 //MARK:- UITableViewDelegate & UITableViewDataSource
 extension PriceListViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.historicalCloseData?.count ?? 0
+    return self.historicalCloseData.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as UITableViewCell
 
-    let currentKey = historicalCloseDataKeys![indexPath.row]
-    cell.textLabel?.text = "\(currentKey): $\(String(describing: historicalCloseData![currentKey]!.round(to: 2)) )"
-
+    if historicalCloseDataKeys.count > 0 {
+      
+      let currentKey = historicalCloseDataKeys[indexPath.row]
+      if let price = historicalCloseData[currentKey] {
+        cell.textLabel?.text = "\(currentKey): \(String(describing: price.currencyFormatter(code: Config.Currency.USD.rawValue)) )"
+      }
+    }
+    
     return cell
   }
   
@@ -79,7 +89,7 @@ extension PriceListViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
     let detailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-    detailViewController.detailViewModel.day = self.historicalCloseDataKeys![indexPath.row]
+    detailViewController.detailViewModel.day = self.historicalCloseDataKeys[indexPath.row]
     self.navigationController?.pushViewController(detailViewController, animated: true)
 
   }

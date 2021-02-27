@@ -15,16 +15,16 @@ class DetailViewController: UITableViewController {
     super.viewDidLoad()
 
     detailViewModel.didUpdate = { [weak self] in
-      self?.refresh()
+      DispatchQueue.main.async {
+        self?.refresh()
+      }
     }
     
   }
   
   // MARK: - Refresh tableview
   func refresh() {
-    DispatchQueue.main.async { [weak self] in
-      self?.tableView.reloadData()
-    }
+    tableView.reloadData()
   }
 
   // MARK: - Table view data source

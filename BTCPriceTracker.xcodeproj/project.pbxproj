@@ -21,6 +21,9 @@
 		5828B89E25E97EA6002682D9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B89D25E97EA6002682D9 /* Extensions.swift */; };
 		5828B8A325E97F80002682D9 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B8A225E97F80002682D9 /* Models.swift */; };
 		5828B8AB25E99CAE002682D9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B8AA25E99CAE002682D9 /* Config.swift */; };
+		5828B8C525E9B760002682D9 /* PriceListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B8C425E9B760002682D9 /* PriceListViewModel.swift */; };
+		5828B8CD25E9B76D002682D9 /* DetaillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B8CC25E9B76D002682D9 /* DetaillViewModel.swift */; };
+		5828B8E525E9D1D5002682D9 /* LastPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B8E425E9D1D5002682D9 /* LastPrice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +64,9 @@
 		5828B89D25E97EA6002682D9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5828B8A225E97F80002682D9 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		5828B8AA25E99CAE002682D9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		5828B8C425E9B760002682D9 /* PriceListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceListViewModel.swift; sourceTree = "<group>"; };
+		5828B8CC25E9B76D002682D9 /* DetaillViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaillViewModel.swift; sourceTree = "<group>"; };
+		5828B8E425E9D1D5002682D9 /* LastPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastPrice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,19 +117,16 @@
 		5828B84325E95081002682D9 /* BTCPriceTracker */ = {
 			isa = PBXGroup;
 			children = (
-				5828B84425E95081002682D9 /* AppDelegate.swift */,
-				5828B84625E95081002682D9 /* SceneDelegate.swift */,
+				5828B8B925E9B725002682D9 /* Models */,
+				5828B8B425E9B6CC002682D9 /* App */,
+				5828B8B825E9B70F002682D9 /* Services */,
+				5828B8B325E9B699002682D9 /* Utils */,
+				5828B8B225E9B632002682D9 /* Detail */,
+				5828B8B125E9B623002682D9 /* PriceList */,
 				5828B84A25E95081002682D9 /* Main.storyboard */,
 				5828B85025E95083002682D9 /* Assets.xcassets */,
 				5828B85225E95083002682D9 /* LaunchScreen.storyboard */,
 				5828B85525E95083002682D9 /* Info.plist */,
-				5828B84D25E95081002682D9 /* BTCPriceTracker.xcdatamodeld */,
-				5828B87F25E95D5E002682D9 /* PriceListViewController.swift */,
-				5828B88F25E96252002682D9 /* DetailViewController.swift */,
-				5828B89425E96900002682D9 /* CoinDeskAPI.swift */,
-				5828B89D25E97EA6002682D9 /* Extensions.swift */,
-				5828B8A225E97F80002682D9 /* Models.swift */,
-				5828B8AA25E99CAE002682D9 /* Config.swift */,
 			);
 			path = BTCPriceTracker;
 			sourceTree = "<group>";
@@ -144,6 +147,60 @@
 				5828B86B25E95083002682D9 /* Info.plist */,
 			);
 			path = BTCPriceTrackerUITests;
+			sourceTree = "<group>";
+		};
+		5828B8B125E9B623002682D9 /* PriceList */ = {
+			isa = PBXGroup;
+			children = (
+				5828B87F25E95D5E002682D9 /* PriceListViewController.swift */,
+				5828B8C425E9B760002682D9 /* PriceListViewModel.swift */,
+			);
+			path = PriceList;
+			sourceTree = "<group>";
+		};
+		5828B8B225E9B632002682D9 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				5828B88F25E96252002682D9 /* DetailViewController.swift */,
+				5828B8CC25E9B76D002682D9 /* DetaillViewModel.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		5828B8B325E9B699002682D9 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				5828B89D25E97EA6002682D9 /* Extensions.swift */,
+				5828B8AA25E99CAE002682D9 /* Config.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		5828B8B425E9B6CC002682D9 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				5828B84425E95081002682D9 /* AppDelegate.swift */,
+				5828B84625E95081002682D9 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		5828B8B825E9B70F002682D9 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				5828B89425E96900002682D9 /* CoinDeskAPI.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		5828B8B925E9B725002682D9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5828B84D25E95081002682D9 /* BTCPriceTracker.xcdatamodeld */,
+				5828B8A225E97F80002682D9 /* Models.swift */,
+				5828B8E425E9D1D5002682D9 /* LastPrice.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,11 +335,14 @@
 			files = (
 				5828B89525E96900002682D9 /* CoinDeskAPI.swift in Sources */,
 				5828B88025E95D5E002682D9 /* PriceListViewController.swift in Sources */,
+				5828B8C525E9B760002682D9 /* PriceListViewModel.swift in Sources */,
 				5828B8AB25E99CAE002682D9 /* Config.swift in Sources */,
 				5828B84F25E95081002682D9 /* BTCPriceTracker.xcdatamodeld in Sources */,
+				5828B8CD25E9B76D002682D9 /* DetaillViewModel.swift in Sources */,
 				5828B8A325E97F80002682D9 /* Models.swift in Sources */,
 				5828B89025E96252002682D9 /* DetailViewController.swift in Sources */,
 				5828B84525E95081002682D9 /* AppDelegate.swift in Sources */,
+				5828B8E525E9D1D5002682D9 /* LastPrice.swift in Sources */,
 				5828B84725E95081002682D9 /* SceneDelegate.swift in Sources */,
 				5828B89E25E97EA6002682D9 /* Extensions.swift in Sources */,
 			);

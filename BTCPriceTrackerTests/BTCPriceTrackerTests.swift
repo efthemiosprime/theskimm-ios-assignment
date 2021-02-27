@@ -25,8 +25,8 @@ class BTCPriceTrackerTests: XCTestCase {
   
   func testHistoricalCloseData() {
     let expectation: XCTestExpectation = self.expectation(description: "HistoricalClose Data Expectation")
-    
-    CoinDeskService.get(CoinDeskRequest.historicalClose(currency: "USD", start: "2021-2-11", end: "2021-2-25"), type: HistoricalClose.self) { (data, error) in
+
+    CoinDeskService.get(CoinDeskRequest.historicalClose(currency: "USD", start: "2021-02-11", end: "2021-02-25"), type: HistoricalClose.self) { (data, error) in
       XCTAssertNil(error, "Error \(String(describing: error?.localizedDescription))")
       XCTAssertNotNil(data, "HistoricalClose data is empty")
       expectation.fulfill()

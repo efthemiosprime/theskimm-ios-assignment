@@ -12,4 +12,5 @@ struct Config {
   private init() {}
   static let RefreshRate: TimeInterval = 60.0
   static let TwoWeeksAgo: Int = 14
+  static let HistoricalCloseDateFormat = "yyyy-MM-dd"
 }

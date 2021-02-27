@@ -15,12 +15,20 @@ extension Double {
 }
 
 extension Date {
-  func format(_ format: String) -> String {
+  func toString(_ format: String) -> String {
       
       let formatter: DateFormatter = DateFormatter()
       formatter.dateFormat = format
       
       return formatter.string(from: self)
+  }
+  
+  func from(_ daysAgo: Int) -> Date {
+    
+    var dateComponents = DateComponents()
+    dateComponents.day = -daysAgo
+    return (Calendar.current as NSCalendar).date(byAdding: .day, value: -daysAgo, to: self, options: NSCalendar.Options(rawValue: 0))!
+    
   }
 }
 

@@ -61,7 +61,6 @@ class PriceListViewController: UIViewController {
             self?.tableView.reloadData()
           }
         }
-
       }
     }
   }

@@ -9,7 +9,7 @@ import Foundation
 
 enum CoinDeskRequest {
   case currentPrice
-  case historicalClose(currency: String? = "USD", start: String?, end: String?)
+  case historicalClose(currency: String? = Config.Currency.EUR.rawValue, start: String?, end: String?)
 }
 
 extension CoinDeskRequest {

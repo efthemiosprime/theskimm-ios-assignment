@@ -84,7 +84,7 @@ extension PriceListViewController: UITableViewDelegate, UITableViewDataSource {
       
       let currentKey = historicalCloseDataKeys[indexPath.row]
       if let price = historicalCloseData[currentKey] {
-        cell.textLabel?.text = "\(currentKey): \(String(describing: price.currencyFormatter(code: Config.Currency.USD.rawValue)) )"
+        cell.textLabel?.text = "\(currentKey): \(String(describing: price.currencyFormatter(code: Config.Currency.EUR.rawValue)) )"
       }
     }
     

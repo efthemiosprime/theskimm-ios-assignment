@@ -43,7 +43,7 @@ class PriceListViewModel {
     
     guard startDate <= endDate else { return }
 
-    let request = CoinDeskRequest.historicalClose(currency: "USD", start: startDate, end: endDate)
+    let request = CoinDeskRequest.historicalClose(currency: Config.Currency.EUR.rawValue, start: startDate, end: endDate)
     CoinDeskService.get(request, type: HistoricalClose.self) { (data, error) in
       completion(data)
     }
@@ -60,8 +60,8 @@ class PriceListViewModel {
   
   @objc func updateCurrentValue() {
     getCurrentPrice { [weak self] price in
-      guard let rate = price?.bpi[Config.Currency.USD.rawValue]?.rate else { return }
-      self?.currentValue = "\(Double(truncating: (rate.currencyFormatter())).currencyFormatter(code: Config.Currency.USD.rawValue))"
+      guard let rate = price?.bpi[Config.Currency.EUR.rawValue]?.rate else { return }
+      self?.currentValue = "\(Double(truncating: (rate.currencyFormatter())).currencyFormatter(code: Config.Currency.EUR.rawValue))"
     }
   }
   

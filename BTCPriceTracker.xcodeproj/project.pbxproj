@@ -10,7 +10,6 @@
 		5828B84525E95081002682D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B84425E95081002682D9 /* AppDelegate.swift */; };
 		5828B84725E95081002682D9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B84625E95081002682D9 /* SceneDelegate.swift */; };
 		5828B84C25E95081002682D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5828B84A25E95081002682D9 /* Main.storyboard */; };
-		5828B84F25E95081002682D9 /* BTCPriceTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5828B84D25E95081002682D9 /* BTCPriceTracker.xcdatamodeld */; };
 		5828B85125E95083002682D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5828B85025E95083002682D9 /* Assets.xcassets */; };
 		5828B85425E95083002682D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5828B85225E95083002682D9 /* LaunchScreen.storyboard */; };
 		5828B85F25E95083002682D9 /* BTCPriceTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B85E25E95083002682D9 /* BTCPriceTrackerTests.swift */; };
@@ -23,7 +22,6 @@
 		5828B8AB25E99CAE002682D9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B8AA25E99CAE002682D9 /* Config.swift */; };
 		5828B8C525E9B760002682D9 /* PriceListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B8C425E9B760002682D9 /* PriceListViewModel.swift */; };
 		5828B8CD25E9B76D002682D9 /* DetaillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B8CC25E9B76D002682D9 /* DetaillViewModel.swift */; };
-		5828B8E525E9D1D5002682D9 /* LastPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5828B8E425E9D1D5002682D9 /* LastPrice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -337,12 +335,10 @@
 				5828B88025E95D5E002682D9 /* PriceListViewController.swift in Sources */,
 				5828B8C525E9B760002682D9 /* PriceListViewModel.swift in Sources */,
 				5828B8AB25E99CAE002682D9 /* Config.swift in Sources */,
-				5828B84F25E95081002682D9 /* BTCPriceTracker.xcdatamodeld in Sources */,
 				5828B8CD25E9B76D002682D9 /* DetaillViewModel.swift in Sources */,
 				5828B8A325E97F80002682D9 /* Models.swift in Sources */,
 				5828B89025E96252002682D9 /* DetailViewController.swift in Sources */,
 				5828B84525E95081002682D9 /* AppDelegate.swift in Sources */,
-				5828B8E525E9D1D5002682D9 /* LastPrice.swift in Sources */,
 				5828B84725E95081002682D9 /* SceneDelegate.swift in Sources */,
 				5828B89E25E97EA6002682D9 /* Extensions.swift in Sources */,
 			);

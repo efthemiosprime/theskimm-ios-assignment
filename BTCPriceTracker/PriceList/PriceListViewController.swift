@@ -20,9 +20,13 @@ class PriceListViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupTableView()
-    refreshCurrentPrice()
-    refreshHistoricalCloseData()
-    
+
+    if Reachability.isConnectedToNetwork(){
+      refreshCurrentPrice()
+      refreshHistoricalCloseData()
+    }else {
+      getCacheData()
+    }
   }
     
   
@@ -63,6 +67,24 @@ class PriceListViewController: UIViewController {
         }
       }
     }
+  }
+  
+  func getCacheData() {
+    let realm = RealmService.shared.realm
+    if let currentValueCache = realm.object(ofType: CurrentValueCache.self, forPrimaryKey: "currentValue") {
+      priceLabel.text = currentValueCache.rate
+    }
+
+    let currentHistoricCacheValue = realm.objects(HistoricalValueCache.self)
+
+    self.historicalCloseData.removeAll()
+    currentHistoricCacheValue.enumerated().forEach({(index, item) in
+      self.historicalCloseData[item.day] = item.rate
+      self.historicalCloseDataKeys.append(item.day)
+      if (index == Config.TwoWeeksAgo - 1) {
+        self.tableView.reloadData()
+      }
+    })
   }
 }
 

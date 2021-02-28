@@ -29,4 +29,4 @@ struct Price: Decodable {
 struct HistoricalClose: Decodable {
   let bpi: [String: Double]
   let time: Time
-}
+} 

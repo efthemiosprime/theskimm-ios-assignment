@@ -12,19 +12,34 @@ class PriceListViewModel {
   var historicalCloseValue: HistoricalClose? = nil {
     didSet {
       self.didUpateHistoricalValue?(historicalCloseValue?.bpi)
+      DispatchQueue.main.async {
+        RealmService.shared.deleteAllHistoricalValueCache()
+      }
+      historicalCloseValue?.bpi.forEach({ (key, value) in
+        let historicalCloseValueCache = HistoricalValueCache(day: key, rate: value)
+        DispatchQueue.main.async {
+          RealmService.shared.create(historicalCloseValueCache)
+        }
+      })
     }
   }
   
   var currentValue: String? = nil {
     didSet {
+      if let currentValue = currentValue {
+        let currentValueCache = CurrentValueCache(rate: currentValue)
+        DispatchQueue.main.async {
+          RealmService.shared.create(currentValueCache, modified: true)
+        }
+      }
       self.didUpdateCurrentValue?()
+      
     }
   }
   
   var pollingTimer: Timer?
   var didUpdateCurrentValue: (()->())? = nil
   var didUpateHistoricalValue: (( [String: Double]?)->())? = nil
-  
   
   //MARK:- Coindesk
   func getCurrentPrice(_ completion: @escaping (CurrentPrice?) -> ()) {
@@ -78,5 +93,5 @@ class PriceListViewModel {
     pollingTimer?.invalidate()
   }
   
-  
+
 }

@@ -16,6 +16,6 @@ RealmSwift
 ## To BUILD and RUN:
 1. Download [XCode](https://developer.apple.com/xcode/download/) 12.4 release.
 2. Clone this repository.
-3. cd to the project directory
+3. `cd` to the project directory
 4. Run `pod install` 
 5. Open `BTCPriceTracker.xcworkspace` and run the project on selected device or simulator

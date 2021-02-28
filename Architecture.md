@@ -3,8 +3,7 @@
 2. Web services are encapsulated in the `CoinDeskService` type.
 3. `PriceListViewModel` contains two closures that notify view controller: `didUpateHistoricalValue` and `didUpdateCurrentValue`
 4. `PriceListViewController` listens for these two closures to be triggered, and then updates the UI.
-5. `PriceListViewModel` is also responsible for polling current BTC value every 60 seconds. This flow is also adapted in 6. 6.6. `DetailViewModel`.
-
+5. `PriceListViewModel` is also responsible for polling current BTC value every 60 seconds.
 
 
 * Services/CoinDeskAPI.swift
@@ -15,7 +14,6 @@
 
 * PriceList/PriceListViewModel.swift
     * Responsible for providing and updating data to `PriceListViewController`
-
 
 * Detail/DetailViewController.swift
     * Responsible for displaying price for EUR, USD and GBP

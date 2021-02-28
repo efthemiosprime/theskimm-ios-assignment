@@ -6,10 +6,16 @@ Bitcoin Rate Tracker an iPhone app which displays current and historical Bitcoin
 2. See EUR, USD, and GBP exchange rates in the past 2 weeks
 3. Navigate seamlessly between screens
 
+## Dependencies
+RealmSwift
+
 ## Requirements 
 - iOS 14.0+ 
 - Swift 5.4+
 
 ## To BUILD and RUN:
-1. [XCode](https://developer.apple.com/xcode/download/) 12.4 release.
+1. Download [XCode](https://developer.apple.com/xcode/download/) 12.4 release.
 2. Clone this repository.
+3. cd to the project directory
+4. Run `pod install` 
+5. Open `BTCPriceTracker.xcworkspace` and run the project on selected device or simulator
